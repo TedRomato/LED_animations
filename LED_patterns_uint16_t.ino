@@ -20,10 +20,11 @@ void setup()
   pinMode(clockPin, OUTPUT);
   digitalWrite(resetPin, HIGH);
   Serial.begin(9600);
+
 }
 
 void loop() 
-{ 
+{
   if(digitalRead(buttonPin))
   {
     ++pattern; 
@@ -31,6 +32,7 @@ void loop()
     {
       pattern = 0;
     }
+    powerLEDs(false);
     digitalWrite(resetPin, LOW);
     delay(10);
     digitalWrite(resetPin, HIGH);
@@ -209,9 +211,7 @@ void spinPattern(int spinChunk, int gap, boolean clockwise, int pause)
 
 uint16_t mirrorLEDs(int from, int to)
 {
-  
-  //Serial.println("*---*-***-*---*");
-  //Serial.println(leds,BIN);
+
   uint16_t mirroredLEDs = leds;
 
   for(int i = 0; i < to-from; ++i)
@@ -222,7 +222,6 @@ uint16_t mirrorLEDs(int from, int to)
       mirroredLEDs -= power(2,from + i);
     }
   }
-  //Serial.println(leds,BIN);
   return mirroredLEDs;
 }
 
