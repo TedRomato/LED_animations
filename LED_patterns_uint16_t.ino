@@ -17,7 +17,7 @@ void setup()
   // Set all the pins of 74HC595 as OUTPUT
   pinMode(latchPin, OUTPUT);
   pinMode(dataPin, OUTPUT);  
-  pinMode(clockPin, OUTPUT);
+  pinMode(clockPin, OUTPUT) ;
   digitalWrite(resetPin, HIGH);
   Serial.begin(9600);
 
@@ -25,6 +25,7 @@ void setup()
 
 void loop() 
 {
+  
   if(digitalRead(buttonPin))
   {
     ++pattern; 
@@ -93,6 +94,8 @@ void loop()
       break;
       // default statements
   }
+  
+  //updateShiftRegister(256);
 }
 
 void graduallyChange(int from, int to, boolean light, boolean clockwise, int pause)
