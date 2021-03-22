@@ -6,7 +6,9 @@ int dataPin = 4;
 int buttonPin = 13;
 int resetPin = 12;
 
+//current pattern
 int pattern = 0;
+//case amount in loop switch
 int patternAmount = 6;
 
 uint16_t leds = 0;    
@@ -95,9 +97,12 @@ void loop()
       // default statements
   }
   
-  //updateShiftRegister(256);
 }
 
+//Gradualy changes diodes from diode to diode
+//can either tun it on of => light
+//clockwise provides you with direction option
+//pause is delay between steps in milliseconds
 void graduallyChange(int from, int to, boolean light, boolean clockwise, int pause)
 { 
   
@@ -116,7 +121,8 @@ void graduallyChange(int from, int to, boolean light, boolean clockwise, int pau
     delay(pause);
   }
 }
-
+//same as previous, but is set to change both halves at the same time => 0, ledAmount-1  => 1 ledAmount-2...
+//offset option changes it to => 0 => 1, ledAmount-1  => 2, ledAmount-2...
 void graduallyChangeHalves(boolean offset, boolean toMiddle,boolean light, int pause)
 { 
   if(offset)
@@ -168,6 +174,14 @@ void graduallyChangeHalves(boolean offset, boolean toMiddle,boolean light, int p
   }
 }
 
+//each step takes light to next index 0on, 1off, 2off => 0off, 1on, 2off => 0off, 1off, 2on
+//chunk determines how many lights are next to each other
+//gap determines how many diodes stay off between chunks
+//example: chunk=1,gap=1 turns on all odd LEDS => turns on all even LEDS
+//exampl2: chunk=2,gap=ledAmount-2 turns on only 0,1 => 1,2
+//clokwise changes direction
+
+
 void spinPattern(int spinChunk, int gap, boolean clockwise, int pause)
 {
   int startOffset = spinChunk/2;
@@ -175,7 +189,7 @@ void spinPattern(int spinChunk, int gap, boolean clockwise, int pause)
   int chunkFirst;
   powerLEDs(false);
   for(int x = 0 ; x < chunkAmount ; ++x)
-  { 
+  {
     chunkFirst = (spinChunk+gap)*x-startOffset;
     powerLEDs(chunkFirst,chunkFirst+spinChunk,true);
     powerLED(chunkFirst-1,false);
@@ -212,6 +226,11 @@ void spinPattern(int spinChunk, int gap, boolean clockwise, int pause)
   }
 }
 
+//Mirrors bits in range
+//example: leds = b111000000000100
+//mirrorLEDs(0,ledAmount) => b001000000000111
+//example2: leds = b111000000000100
+//mirrorLEDs(0,5) => b001110000000100
 uint16_t mirrorLEDs(int from, int to)
 {
 
@@ -260,6 +279,7 @@ boolean isLit(int LED)
   return (leds&LED)==LED;
 }
 
+//turns leds in range on/off
 void powerLEDs(int from, int to, boolean light)
 {
   for(int i = from; i < to; ++i)
@@ -267,6 +287,8 @@ void powerLEDs(int from, int to, boolean light)
     powerLED(i,power);
   }
 }
+
+//turns all leds on/off
 void powerLEDs(boolean light)
 {
   if(light)
@@ -279,6 +301,13 @@ void powerLEDs(boolean light)
   }
 }
 
+//sends data to registers
+//note: it distributes all leds evenly into both registers, so if you are 
+//using 10 diodes, then register one uses pin 0-5 and the other one uses 0-5
+//I just find it more neat, when it is symmetrical, but if you for some reason don't want to 
+//have it symmetrical, just replace
+//this shiftOut(dataPin, clockPin, LSBFIRST, (ledsValues >> ledAmount/2));
+//with this shiftOut(dataPin, clockPin, LSBFIRST, (ledsValues >> 8));
 void updateShiftRegister(uint16_t ledsValues)
 {
    digitalWrite(latchPin, LOW);
