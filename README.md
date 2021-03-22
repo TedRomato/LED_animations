@@ -4,10 +4,10 @@
 
   <p>This repository contains code for simple LED animation, which can be changed using push button.</p>
   <img src="https://user-images.githubusercontent.com/59472129/112056503-5f77c600-8b58-11eb-8b6d-079e080e2b79.gif">
-
   <h2>Code:</h2>
 
   <h2>Circuit:</h2>
+  <img src="https://github.com/TedRomato/LED_animations/blob/master/circuit.png" width="480px">
   <h3>Components:<h3>
   <p>
     <ul>
