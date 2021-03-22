@@ -11,6 +11,7 @@ int pattern = 0;
 //case amount in loop switch
 int patternAmount = 6;
 
+//variable for holding all leds status
 uint16_t leds = 0;    
 int ledAmount = 14; 
 
@@ -28,6 +29,7 @@ void setup()
 void loop() 
 {
   
+  //if button was pressed during animation move to next pattern
   if(digitalRead(buttonPin))
   {
     ++pattern; 
@@ -40,6 +42,8 @@ void loop()
     delay(10);
     digitalWrite(resetPin, HIGH);
   }
+  //run selected pattern on loop
+  //every case is a pattern
   switch (pattern)
   {
     case 0:
@@ -273,6 +277,7 @@ void powerLED(int LED, boolean light)
    }
 }
 
+//check if diode is lit
 boolean isLit(int LED)
 {
   LED = power(2,LED);
@@ -317,7 +322,7 @@ void updateShiftRegister(uint16_t ledsValues)
 } 
 
 
-
+//my power method, because builitn pow() acts funny
 int power(int num, int power){
    int x = 1;
    for(int i = 0; i < power; i++){
