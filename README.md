@@ -30,7 +30,9 @@
 </ul>
 <p>First we put down our Shift registers, and wire them according to diagram. Then we put down our diodes in parallel. Don't forget to add your 330 Ohm resistors, before every diode, so it doesn't overload. Then wire your first diode to pin Q7 of second shift register (the one that does't have DO connected). Then connect the rest. On diagram diodes are indexed from bottom up. After connecting our diodes with our shift registers, we go on and put down our animation change push button, with 555 Timer according to diagram (top left corner). <br> Not Compulsory step: If you would like to see, when push button was pressed, and change of animation is about to occur, just connect another red LED with 330 Ohm resistor from 555 Timer OUT pin to ground. Now, if the diode is on, you know that animation is about to occur.</p>
 <img src="https://youtu.be/PzLpVxbFlUU" width="650">
-[![Watch the video](https://youtu.be/PzLpVxbFlUU)
+https://user-images.githubusercontent.com/59472129/112054700-29394700-8b56-11eb-9a8c-e778a9ca0cc4.mov
+
+
 
 
 
