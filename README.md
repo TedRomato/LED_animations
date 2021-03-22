@@ -5,7 +5,7 @@
   <p>This repository contains code for simple LED animation, which can be changed using push button.</p>
   <img src="https://user-images.githubusercontent.com/59472129/112056503-5f77c600-8b58-11eb-8b6d-079e080e2b79.gif">
   <h2>Code:</h2>
-  <p>Code including comments is in LED_patterns_uint16_t.ino folder.</p>
+  <p>Code including comments is in LED_patterns_uint16_t.ino file.</p>
   <p>If you would like to create your own animation, you can use premade functions. Just add case into switch in loop function, and write your animation there. Then you also     have to change patternAmount variable to match amount of cases.</p>
   <h3>Here is function list</h3>
   <ul>
