@@ -16,7 +16,7 @@
 
   <h2>Circuit:</h2>
   <img src="https://github.com/TedRomato/LED_animations/blob/master/circuit.png" width="480px">
-  <h3>Components:<h3>
+  <h3>Components:</h3>
   <p>
     <ul>
       <li>Arduino UNO</li>
