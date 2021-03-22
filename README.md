@@ -22,7 +22,7 @@
       <li>Cables</li>
       <li>Another red diode and 330 Ohm resistor (not compulsory)</li>
     </ul>
-  <p>
+  </p>
   <h3>Wiring:</h3>
   <p>This project has 3 main parts:</p>
   <ul>
